@@ -1,0 +1,13 @@
+name: Deploy to FTP
+
+on:
+  repository_dispatch:
+    types: [deploy-ftp-event]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Run a script
+        run: echo ${{ github.event.client_payload.test }}
