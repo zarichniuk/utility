@@ -2,14 +2,14 @@ name: Deploy to FTP
 
 on:
   repository_dispatch:
-    types: [deploy-ftp-event]
+    types: [deploy-to-ftp]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout different repository
+      - name: Checkout repository
         uses: actions/checkout@v3
         with:
           repository: zarichniuk/sezam4mam
@@ -23,11 +23,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run build script
-        run: npm run build
+      - name: Run deployment script
+        run: npm run deploy:staging
 
-      - name: Echo directory contents
-        run: ls -la ./dist
-
-      - name: Run a script
+      - name: Done
         run: echo "Done."
